@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36310.24
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PricingIntelligencePlatform.Sdk", "PricingIntelligencePlatform.Sdk\PricingIntelligencePlatform.Sdk.csproj", "{6DFC35F8-EDD5-4A5D-8BEA-EE69B9BFE10F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grula.PricingIntelligencePlatform.Sdk", "Grula.PricingIntelligencePlatform.Sdk\Grula.PricingIntelligencePlatform.Sdk.csproj", "{57564ABF-AE28-41FE-9756-CD8C59EE2685}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6DFC35F8-EDD5-4A5D-8BEA-EE69B9BFE10F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6DFC35F8-EDD5-4A5D-8BEA-EE69B9BFE10F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6DFC35F8-EDD5-4A5D-8BEA-EE69B9BFE10F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6DFC35F8-EDD5-4A5D-8BEA-EE69B9BFE10F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57564ABF-AE28-41FE-9756-CD8C59EE2685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57564ABF-AE28-41FE-9756-CD8C59EE2685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57564ABF-AE28-41FE-9756-CD8C59EE2685}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57564ABF-AE28-41FE-9756-CD8C59EE2685}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

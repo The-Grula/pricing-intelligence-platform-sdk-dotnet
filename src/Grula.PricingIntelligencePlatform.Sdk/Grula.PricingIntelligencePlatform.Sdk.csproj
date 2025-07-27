@@ -20,13 +20,13 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <None Include="..\..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
-
+  
   <ItemGroup>
-    <OpenApiReference Include="OpenAPIs\swagger.json">
+    <OpenApiReference Include="OpenAPIs\swagger.json" ClassName="GrulaApiClient">
       <SourceUri>https://api.grula.net/swagger/v1/swagger.json</SourceUri>
     </OpenApiReference>
   </ItemGroup>
