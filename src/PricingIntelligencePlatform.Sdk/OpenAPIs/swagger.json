@@ -1,0 +1,4491 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "PricingPolicies.Api",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/v1/drivers": {
+      "get": {
+        "tags": [
+          "Drivers"
+        ],
+        "summary": "Gets drivers.",
+        "operationId": "GetDrivers",
+        "parameters": [
+          {
+            "name": "environmentId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "pageIndex",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DriverReadModelIPaged"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Drivers"
+        ],
+        "summary": "Creates a driver.",
+        "operationId": "CreateDriver",
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDriverRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DriverReadModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/drivers/{id}": {
+      "get": {
+        "tags": [
+          "Drivers"
+        ],
+        "summary": "Gets a driver by ID.",
+        "operationId": "GetDriver",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DriverReadModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Drivers"
+        ],
+        "summary": "Updates a driver with optimistic concurrency.",
+        "operationId": "UpdateDriver",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDriverRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/driver-items": {
+      "post": {
+        "tags": [
+          "Drivers"
+        ],
+        "summary": "Creates a driver item.",
+        "operationId": "CreateDriverItem",
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDriverItemRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/driver-items/batch": {
+      "post": {
+        "tags": [
+          "Drivers"
+        ],
+        "summary": "Creates multiple driver items.",
+        "operationId": "CreateDriverItems",
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDriverItemsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/driver-items/{id}": {
+      "get": {
+        "tags": [
+          "Drivers"
+        ],
+        "summary": "Gets a driver item by ID.",
+        "operationId": "GetDriverItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DriverItemReadModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Drivers"
+        ],
+        "summary": "Updates a driver item with optimistic concurrency.",
+        "operationId": "UpdateDriverItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDriverItemRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/drivers/{driverId}/driver-items": {
+      "get": {
+        "tags": [
+          "Drivers"
+        ],
+        "summary": "Gets driver items by driver ID.",
+        "operationId": "GetDriverItems",
+        "parameters": [
+          {
+            "name": "driverId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "pageIndex",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "searchTerm",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DriverItemReadModelIPaged"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/organizations/{organizationId}/environments": {
+      "get": {
+        "tags": [
+          "Organizations"
+        ],
+        "summary": "Gets environments by organization id.",
+        "operationId": "GetEnvironments",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "pageIndex",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnvironmentReadModelIPaged"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/price-adjustment-policies": {
+      "post": {
+        "tags": [
+          "PriceAdjustmentPolicies"
+        ],
+        "summary": "Creates a price adjustment policy.",
+        "operationId": "CreatePriceAdjustmentPolicy",
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePriceAdjustmentPolicyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "PriceAdjustmentPolicies"
+        ],
+        "summary": "Gets price adjustment policies.",
+        "operationId": "GetPriceAdjustmentPolicies",
+        "parameters": [
+          {
+            "name": "priceAdjustmentPolicyCategoryId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "pageIndex",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriceAdjustmentPolicyReadModelIPaged"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/price-adjustment-policies/{id}": {
+      "put": {
+        "tags": [
+          "PriceAdjustmentPolicies"
+        ],
+        "summary": "Updates a price adjustment policy with optimistic concurrency.",
+        "operationId": "UpdatePriceAdjustmentPolicy",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePriceAdjustmentPolicyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "PriceAdjustmentPolicies"
+        ],
+        "summary": "Gets a price adjustment policy by ID.",
+        "operationId": "GetPriceAdjustmentPolicy",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriceAdjustmentPolicyReadModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "PriceAdjustmentPolicies"
+        ],
+        "summary": "Soft deletes a price adjustment policy.",
+        "operationId": "SoftDeletePriceAdjustmentPolicy",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/price-adjustment-policies/reorder": {
+      "put": {
+        "tags": [
+          "PriceAdjustmentPolicies"
+        ],
+        "summary": "Reorders price adjustment policies within a category.",
+        "operationId": "ReorderPriceAdjustmentPolicies",
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReorderPriceAdjustmentPoliciesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/price-adjustment-policy-categories": {
+      "get": {
+        "tags": [
+          "PriceAdjustmentPolicyCategories"
+        ],
+        "summary": "Gets price adjustment policy categories.",
+        "operationId": "GetPriceAdjustmentPolicyCategories",
+        "parameters": [
+          {
+            "name": "environmentId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "pageIndex",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriceAdjustmentPolicyCategoryReadModelIPaged"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "PriceAdjustmentPolicyCategories"
+        ],
+        "summary": "Creates a price adjustment policy category.",
+        "operationId": "CreatePriceAdjustmentPolicyCategory",
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePriceAdjustmentPolicyCategoryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/price-adjustment-policy-categories/{id}": {
+      "get": {
+        "tags": [
+          "PriceAdjustmentPolicyCategories"
+        ],
+        "summary": "Gets a price adjustment policy category by ID.",
+        "operationId": "GetPriceAdjustmentPolicyCategory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriceAdjustmentPolicyCategoryReadModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "PriceAdjustmentPolicyCategories"
+        ],
+        "summary": "Updates a price adjustment policy category with optimistic concurrency.",
+        "operationId": "UpdatePriceAdjustmentPolicyCategory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePriceAdjustmentPolicyCategoryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/price-adjustment-policy-categories/{categoryId}/drivers": {
+      "post": {
+        "tags": [
+          "PriceAdjustmentPolicyCategories"
+        ],
+        "summary": "Creates a price adjustment category driver.",
+        "operationId": "CreatePriceAdjustmentCategoryDriver",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePriceAdjustmentCategoryDriverRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "PriceAdjustmentPolicyCategories"
+        ],
+        "summary": "Gets price adjustment category drivers.",
+        "operationId": "GetPriceAdjustmentCategoryDrivers",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "pageIndex",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriceAdjustmentPolicyCategoryDriverReadModelIPaged"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/price-adjustment-policy-categories/{categoryId}/drivers/{id}": {
+      "get": {
+        "tags": [
+          "PriceAdjustmentPolicyCategories"
+        ],
+        "summary": "Gets a price adjustment category driver by ID.",
+        "operationId": "GetPriceAdjustmentCategoryDriver",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriceAdjustmentPolicyCategoryDriverReadModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "PriceAdjustmentPolicyCategories"
+        ],
+        "summary": "Updates a price adjustment category driver with optimistic concurrency.",
+        "operationId": "UpdatePriceAdjustmentCategoryDriver",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePriceAdjustmentCategoryDriverRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/price": {
+      "post": {
+        "tags": [
+          "Prices"
+        ],
+        "summary": "Gets a price by price drivers, three letter currency code and optional pricing date.",
+        "operationId": "GetPriceByPriceDrivers",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetPriceByPriceDriversQuery"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriceReadModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/prices": {
+      "post": {
+        "tags": [
+          "Prices"
+        ],
+        "summary": "Gets multiple prices by price drivers in a single request. Maximum 100 price requests allowed.",
+        "operationId": "GetPricesByPriceDrivers",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetPricesByPriceDriversQuery"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PriceReadModel"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pricing-policies": {
+      "get": {
+        "tags": [
+          "PricingPolicies"
+        ],
+        "summary": "Gets pricing policies.",
+        "operationId": "GetPricingPolicies",
+        "parameters": [
+          {
+            "name": "environmentId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "pageIndex",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PricingPolicyReadModelIPaged"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "PricingPolicies"
+        ],
+        "summary": "Creates new pricing policy.",
+        "operationId": "CreatePricingPolicy",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePricingPolicyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pricing-policies/{id}": {
+      "get": {
+        "tags": [
+          "PricingPolicies"
+        ],
+        "summary": "Gets a pricing policy by ID.",
+        "operationId": "GetPricingPolicy",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PricingPolicyReadModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "PricingPolicies"
+        ],
+        "summary": "Updates a pricing policy with optimistic concurrency.",
+        "operationId": "UpdatePricingPolicy",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePricingPolicyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "PricingPolicies"
+        ],
+        "summary": "Soft deletes a pricing policy.",
+        "operationId": "SoftDeletePricingPolicy",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pricing-policy-drivers": {
+      "get": {
+        "tags": [
+          "PricingPolicyDrivers"
+        ],
+        "operationId": "GetPricingPolicyDrivers",
+        "parameters": [
+          {
+            "name": "environmentId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "pageIndex",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PricingPolicyDriverReadModelIPaged"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "PricingPolicyDrivers"
+        ],
+        "operationId": "CreatePricingPolicyDriver",
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePricingPolicyDriverRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pricing-policy-drivers/{id}": {
+      "get": {
+        "tags": [
+          "PricingPolicyDrivers"
+        ],
+        "operationId": "GetPricingPolicyDriver",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PricingPolicyDriver"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "PricingPolicyDrivers"
+        ],
+        "operationId": "UpdatePricingPolicyDriver",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePricingPolicyDriverRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pricing-simulators": {
+      "get": {
+        "tags": [
+          "PricingSimulators"
+        ],
+        "summary": "Gets pricing simulators.",
+        "operationId": "GetPricingSimulators",
+        "parameters": [
+          {
+            "name": "environmentId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "pageIndex",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PricingSimulatorReadModelIPaged"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pricing-simulator-items": {
+      "post": {
+        "tags": [
+          "PricingSimulators"
+        ],
+        "summary": "Creates a pricing simulator item.",
+        "operationId": "CreatePricingSimulatorItem",
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePricingSimulatorItemRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pricing-simulator-items/{id}": {
+      "delete": {
+        "tags": [
+          "PricingSimulators"
+        ],
+        "summary": "Soft deletes a pricing simulator item.",
+        "operationId": "SoftDeletePricingSimulatorItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateDriverItemDto": {
+        "type": "object",
+        "properties": {
+          "driverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateDriverItemRequest": {
+        "type": "object",
+        "properties": {
+          "driverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateDriverItemsRequest": {
+        "type": "object",
+        "properties": {
+          "driverItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateDriverItemDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateDriverRequest": {
+        "type": "object",
+        "properties": {
+          "environmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePriceAdjustmentCategoryDriverRequest": {
+        "type": "object",
+        "properties": {
+          "priceAdjustmentPolicyCategoryId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "driverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePriceAdjustmentPolicyCategoryRequest": {
+        "type": "object",
+        "properties": {
+          "environmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePriceAdjustmentPolicyDriverItemDto": {
+        "type": "object",
+        "properties": {
+          "priceAdjustmentPolicyCategoryDriverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "driverItemId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePriceAdjustmentPolicyPriceDto": {
+        "type": "object",
+        "properties": {
+          "priceAdjustmentPolicyActionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "minAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "maxAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "validFrom": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "validTo": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePriceAdjustmentPolicyRequest": {
+        "type": "object",
+        "properties": {
+          "priceAdjustmentPolicyCategoryId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "priceAdjustmentPolicyDriverItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreatePriceAdjustmentPolicyDriverItemDto"
+            },
+            "nullable": true
+          },
+          "priceAdjustmentPolicyPrices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreatePriceAdjustmentPolicyPriceDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePricingPolicyDriverItemDto": {
+        "type": "object",
+        "properties": {
+          "pricingPolicyDriverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "driverItemId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePricingPolicyDriverRequest": {
+        "type": "object",
+        "properties": {
+          "driverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePricingPolicyPriceDto": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "$ref": "#/components/schemas/CreatePricingPolicyPriceMoneyDto"
+          },
+          "validFrom": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "validTo": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePricingPolicyPriceMoneyDto": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "currencyThreeLetterCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePricingPolicyRequest": {
+        "type": "object",
+        "properties": {
+          "environmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "pricingPolicyDriverItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreatePricingPolicyDriverItemDto"
+            },
+            "nullable": true
+          },
+          "pricingPolicyPrices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreatePricingPolicyPriceDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePricingSimulatorItemPriceAdjustmentPolicyDriverItemDto": {
+        "type": "object",
+        "properties": {
+          "priceAdjustmentPolicyDriverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "driverItemId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePricingSimulatorItemPricingPolicyDriverItemDto": {
+        "type": "object",
+        "properties": {
+          "pricingPolicyDriverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "driverItemId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreatePricingSimulatorItemRequest": {
+        "type": "object",
+        "properties": {
+          "environmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "pricingPolicyDriverItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreatePricingSimulatorItemPricingPolicyDriverItemDto"
+            },
+            "nullable": true
+          },
+          "priceAdjustmentPolicyDriverItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreatePricingSimulatorItemPriceAdjustmentPolicyDriverItemDto"
+            },
+            "nullable": true
+          },
+          "currencyThreeLetterIsoCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "asOf": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DriverItemReadModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "driverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastModifiedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DriverItemReadModelIPaged": {
+        "type": "object",
+        "properties": {
+          "hasNextPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "hasPreviousPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DriverItemReadModel"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "itemsPerPage": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "pageIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DriverReadModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "environmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastModifiedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DriverReadModelIPaged": {
+        "type": "object",
+        "properties": {
+          "hasNextPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "hasPreviousPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DriverReadModel"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "itemsPerPage": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "pageIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EnvironmentReadModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastModifiedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EnvironmentReadModelIPaged": {
+        "type": "object",
+        "properties": {
+          "hasNextPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "hasPreviousPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EnvironmentReadModel"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "itemsPerPage": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "pageIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetPriceByPriceDriversQuery": {
+        "type": "object",
+        "properties": {
+          "environmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "priceDrivers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriceDriver"
+            },
+            "nullable": true
+          },
+          "currencyThreeLetterCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "pricingDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetPricesByPriceDriversQuery": {
+        "type": "object",
+        "properties": {
+          "environmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "priceRequests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriceRequest"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MoneyReadModel": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "currencyThreeLetterCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderedItem": {
+        "required": [
+          "id",
+          "order"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriceAdjustmentPolicyCategoryDriverReadModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "priceAdjustmentPolicyCategoryId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "driverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastModifiedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriceAdjustmentPolicyCategoryDriverReadModelIPaged": {
+        "type": "object",
+        "properties": {
+          "hasNextPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "hasPreviousPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriceAdjustmentPolicyCategoryDriverReadModel"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "itemsPerPage": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "pageIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriceAdjustmentPolicyCategoryReadModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "environmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastModifiedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriceAdjustmentPolicyCategoryReadModelIPaged": {
+        "type": "object",
+        "properties": {
+          "hasNextPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "hasPreviousPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriceAdjustmentPolicyCategoryReadModel"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "itemsPerPage": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "pageIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriceAdjustmentPolicyDriverItemReadModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "adjustmentPolicyCategoryDriverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "driverItemId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "driverItemName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriceAdjustmentPolicyPriceReadModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "priceAdjustmentPolicyActionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "priceAdjustmentPolicyActionName": {
+            "type": "string",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "minAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "maxAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "validFrom": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "validTo": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriceAdjustmentPolicyReadModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "priceAdjustmentPolicyCategoryId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "driverItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriceAdjustmentPolicyDriverItemReadModel"
+            },
+            "nullable": true
+          },
+          "prices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriceAdjustmentPolicyPriceReadModel"
+            },
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastModifiedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriceAdjustmentPolicyReadModelIPaged": {
+        "type": "object",
+        "properties": {
+          "hasNextPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "hasPreviousPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriceAdjustmentPolicyReadModel"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "itemsPerPage": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "pageIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriceComponentReadModel": {
+        "type": "object",
+        "properties": {
+          "pricingPolicyId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "priceAdjustmentPolicyId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "amount": {
+            "$ref": "#/components/schemas/MoneyReadModel"
+          },
+          "priceAdjustmentPolicyActionId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "priceAdjustmentPolicyActionName": {
+            "type": "string",
+            "nullable": true
+          },
+          "priceAdjustmentPolicyValue": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "priceAdjustmentPolicyMinAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "priceAdjustmentPolicyMaxAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriceDriver": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriceReadModel": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "$ref": "#/components/schemas/MoneyReadModel"
+          },
+          "priceComponents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriceComponentReadModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriceRequest": {
+        "type": "object",
+        "properties": {
+          "priceDrivers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriceDriver"
+            },
+            "nullable": true
+          },
+          "currencyThreeLetterCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "pricingDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PricingPolicyDriver": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "driverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PricingPolicyDriverItemReadModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "pricingPolicyDriverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "pricingPolicyDriverName": {
+            "type": "string",
+            "nullable": true
+          },
+          "driverItemId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "driverItemName": {
+            "type": "string",
+            "nullable": true
+          },
+          "driverItemDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "driverItemValue": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PricingPolicyDriverReadModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "driverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastModifiedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PricingPolicyDriverReadModelIPaged": {
+        "type": "object",
+        "properties": {
+          "hasNextPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "hasPreviousPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PricingPolicyDriverReadModel"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "itemsPerPage": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "pageIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PricingPolicyPriceReadModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "currencyThreeLetterCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "validFrom": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "validTo": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PricingPolicyReadModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "environmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "pricingPolicyDriverItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PricingPolicyDriverItemReadModel"
+            },
+            "nullable": true
+          },
+          "prices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PricingPolicyPriceReadModel"
+            },
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastModifiedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PricingPolicyReadModelIPaged": {
+        "type": "object",
+        "properties": {
+          "hasNextPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "hasPreviousPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PricingPolicyReadModel"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "itemsPerPage": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "pageIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PricingSimulatorItemReadModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "pricingPolicyDriverItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PricingSimulatorPricingPolicyDriverItemReadModel"
+            },
+            "nullable": true
+          },
+          "priceAdjustmentPolicyDriverItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PricingSimulatorPriceAdjustmentPolicyDriverItemReadModel"
+            },
+            "nullable": true
+          },
+          "currencyThreeLetterIsoCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "asOf": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PricingSimulatorPriceAdjustmentPolicyDriverItemReadModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "priceAdjustmentPolicyDriverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "priceAdjustmentPolicyDriverName": {
+            "type": "string",
+            "nullable": true
+          },
+          "driverItemId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "driverItemName": {
+            "type": "string",
+            "nullable": true
+          },
+          "driverItemValue": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PricingSimulatorPricingPolicyDriverItemReadModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "pricingPolicyDriverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "pricingPolicyDriverName": {
+            "type": "string",
+            "nullable": true
+          },
+          "driverItemId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "driverItemName": {
+            "type": "string",
+            "nullable": true
+          },
+          "driverItemValue": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PricingSimulatorReadModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PricingSimulatorItemReadModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PricingSimulatorReadModelIPaged": {
+        "type": "object",
+        "properties": {
+          "hasNextPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "hasPreviousPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PricingSimulatorReadModel"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "itemsPerPage": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "pageIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "ReorderPriceAdjustmentPoliciesRequest": {
+        "required": [
+          "orderedItems",
+          "priceAdjustmentPolicyCategoryId"
+        ],
+        "type": "object",
+        "properties": {
+          "priceAdjustmentPolicyCategoryId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "orderedItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderedItem"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateDriverItemRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateDriverRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePriceAdjustmentCategoryDriverRequest": {
+        "type": "object",
+        "properties": {
+          "priceAdjustmentPolicyCategoryId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "driverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePriceAdjustmentPolicyCategoryRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePriceAdjustmentPolicyRequest": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "adjustmentPolicyDriverItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreatePriceAdjustmentPolicyDriverItemDto"
+            },
+            "nullable": true
+          },
+          "adjustmentPolicyPrices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreatePriceAdjustmentPolicyPriceDto"
+            },
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePricingPolicyDriverRequest": {
+        "type": "object",
+        "properties": {
+          "driverId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePricingPolicyRequest": {
+        "type": "object",
+        "properties": {
+          "pricingPolicyDriverItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreatePricingPolicyDriverItemDto"
+            },
+            "nullable": true
+          },
+          "pricingPolicyPrices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreatePricingPolicyPriceDto"
+            },
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "JWT Authorization header using the Bearer scheme.  \n          Enter 'Bearer' [space] and then your token in the text input below.  \n          Example: 'Bearer abc123'",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
