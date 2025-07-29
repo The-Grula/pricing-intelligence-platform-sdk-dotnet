@@ -39,11 +39,16 @@ using Grula.PricingIntelligencePlatform.Sdk;
 // In Program.cs or Startup.cs
 var builder = Host.CreateApplicationBuilder(args);
 
-builder.Services.AddHttpClient<GrulaApiClient>(client =>
+builder.Services.AddHttpClient("GrulaApi", client =>
 {
     client.BaseAddress = new Uri("https://api.grula.net");
     client.DefaultRequestHeaders.Authorization = 
         new AuthenticationHeaderValue("Bearer", builder.Configuration["GrulaApi:ApiKey"]);
+})
+.AddTypedClient((httpClient, serviceProvider) =>
+{
+    var baseUrl = "https://api.grula.net"; // or get from configuration
+    return new GrulaApiClient(baseUrl, httpClient);
 });
 
 var host = builder.Build();
@@ -173,7 +178,7 @@ var httpClient = new HttpClient
 httpClient.DefaultRequestHeaders.Authorization = 
     new AuthenticationHeaderValue("Bearer", "your-api-key-here");
 
-var client = new GrulaApiClient(httpClient);
+var client = new GrulaApiClient("https://api.grula.net", httpClient);
 ```
 
 ## Configuration
@@ -192,7 +197,7 @@ var httpClient = new HttpClient
 httpClient.DefaultRequestHeaders.Authorization = 
     new AuthenticationHeaderValue("Bearer", "your-api-key-here");
 
-var client = new GrulaApiClient(httpClient);
+var client = new GrulaApiClient("https://api.grula.net", httpClient);
 ```
 
 ### Dependency Injection
@@ -200,11 +205,16 @@ var client = new GrulaApiClient(httpClient);
 Register the client in your DI container:
 
 ```csharp
-services.AddHttpClient<GrulaApiClient>(client =>
+services.AddHttpClient("GrulaApi", client =>
 {
     client.BaseAddress = new Uri("https://api.grula.net");
     client.DefaultRequestHeaders.Authorization = 
         new AuthenticationHeaderValue("Bearer", configuration["GrulaApi:ApiKey"]);
+})
+.AddTypedClient((httpClient, serviceProvider) =>
+{
+    var baseUrl = "https://api.grula.net"; // or get from configuration
+    return new GrulaApiClient(baseUrl, httpClient);
 });
 ```
 
@@ -213,8 +223,18 @@ services.AddHttpClient<GrulaApiClient>(client =>
 The SDK supports logging through the HttpClient:
 
 ```csharp
-services.AddHttpClient<GrulaApiClient>()
-    .AddLogger();
+services.AddHttpClient("GrulaApi", client =>
+{
+    client.BaseAddress = new Uri("https://api.grula.net");
+    client.DefaultRequestHeaders.Authorization = 
+        new AuthenticationHeaderValue("Bearer", configuration["GrulaApi:ApiKey"]);
+})
+.AddTypedClient((httpClient, serviceProvider) =>
+{
+    var baseUrl = "https://api.grula.net";
+    return new GrulaApiClient(baseUrl, httpClient);
+})
+.AddLogger(); // Add logging to the HttpClient
 ```
 
 ## Error Handling
@@ -234,6 +254,30 @@ catch (HttpRequestException ex)
 {
     Console.WriteLine($"Network Error: {ex.Message}");
 }
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**InvalidOperationException: Unable to resolve service for type 'System.String'**
+
+This error occurs when using the generic `AddHttpClient<GrulaApiClient>()` method. The generated `GrulaApiClient` requires both a `baseUrl` string and an `HttpClient` instance in its constructor.
+
+**Solution:** Use the factory-based registration pattern shown in the examples above:
+
+```csharp
+services.AddHttpClient("GrulaApi", client =>
+{
+    client.BaseAddress = new Uri("https://api.grula.net");
+    client.DefaultRequestHeaders.Authorization = 
+        new AuthenticationHeaderValue("Bearer", configuration["GrulaApi:ApiKey"]);
+})
+.AddTypedClient((httpClient, serviceProvider) =>
+{
+    var baseUrl = "https://api.grula.net";
+    return new GrulaApiClient(baseUrl, httpClient);
+});
 ```
 
 ## API Reference
@@ -260,11 +304,3 @@ For support and questions:
 
 - Create an issue on [GitHub](https://github.com/The-Grula/pricing-intelligence-platform-sdk-dotnet/issues)
 - Visit the [API documentation](https://api.grula.net)
-
-## Changelog
-
-### v1.0.0
-- Initial release
-- Full API coverage for Grula Pricing Intelligence Platform
-- Support for all pricing operations
-- Strongly typed models generated from OpenAPI specification

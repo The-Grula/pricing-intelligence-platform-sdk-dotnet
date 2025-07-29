@@ -114,7 +114,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateDriverRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreateDriverRequest"
+                  }
+                ]
               }
             }
           },
@@ -243,7 +247,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateDriverRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UpdateDriverRequest"
+                  }
+                ]
               }
             }
           },
@@ -311,7 +319,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateDriverItemRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreateDriverItemRequest"
+                  }
+                ]
               }
             }
           },
@@ -386,7 +398,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateDriverItemsRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreateDriverItemsRequest"
+                  }
+                ]
               }
             }
           },
@@ -536,7 +552,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateDriverItemRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UpdateDriverItemRequest"
+                  }
+                ]
               }
             }
           },
@@ -633,6 +653,87 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DriverItemReadModelIPaged"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/organizations": {
+      "get": {
+        "tags": [
+          "Organizations"
+        ],
+        "summary": "Gets organizations.",
+        "operationId": "GetOrganizations",
+        "parameters": [
+          {
+            "name": "pageIndex",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationReadModelIPaged"
                 }
               }
             }
@@ -791,7 +892,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreatePriceAdjustmentPolicyRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreatePriceAdjustmentPolicyRequest"
+                  }
+                ]
               }
             }
           },
@@ -956,7 +1061,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdatePriceAdjustmentPolicyRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UpdatePriceAdjustmentPolicyRequest"
+                  }
+                ]
               }
             }
           },
@@ -1144,7 +1253,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ReorderPriceAdjustmentPoliciesRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ReorderPriceAdjustmentPoliciesRequest"
+                  }
+                ]
               }
             }
           },
@@ -1300,7 +1413,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreatePriceAdjustmentPolicyCategoryRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreatePriceAdjustmentPolicyCategoryRequest"
+                  }
+                ]
               }
             }
           },
@@ -1447,7 +1564,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdatePriceAdjustmentPolicyCategoryRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UpdatePriceAdjustmentPolicyCategoryRequest"
+                  }
+                ]
               }
             }
           },
@@ -1524,7 +1645,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreatePriceAdjustmentCategoryDriverRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreatePriceAdjustmentCategoryDriverRequest"
+                  }
+                ]
               }
             }
           },
@@ -1777,7 +1902,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdatePriceAdjustmentCategoryDriverRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UpdatePriceAdjustmentCategoryDriverRequest"
+                  }
+                ]
               }
             }
           },
@@ -1835,7 +1964,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GetPriceByPriceDriversQuery"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GetPriceByPriceDriversQuery"
+                  }
+                ]
               }
             }
           },
@@ -1906,7 +2039,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GetPricesByPriceDriversQuery"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GetPricesByPriceDriversQuery"
+                  }
+                ]
               }
             }
           },
@@ -2068,7 +2205,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreatePricingPolicyRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreatePricingPolicyRequest"
+                  }
+                ]
               }
             }
           },
@@ -2215,7 +2356,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdatePricingPolicyRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UpdatePricingPolicyRequest"
+                  }
+                ]
               }
             }
           },
@@ -2419,7 +2564,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreatePricingPolicyDriverRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreatePricingPolicyDriverRequest"
+                  }
+                ]
               }
             }
           },
@@ -2564,7 +2713,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdatePricingPolicyDriverRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UpdatePricingPolicyDriverRequest"
+                  }
+                ]
               }
             }
           },
@@ -2715,7 +2868,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreatePricingSimulatorItemRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreatePricingSimulatorItemRequest"
+                  }
+                ]
               }
             }
           },
@@ -2832,16 +2989,14 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "description": {
             "type": "string",
             "nullable": true
           },
           "value": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -2854,16 +3009,14 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "description": {
             "type": "string",
             "nullable": true
           },
           "value": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -2875,8 +3028,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreateDriverItemDto"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -2889,8 +3041,7 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -2907,8 +3058,7 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "order": {
             "type": "integer",
@@ -2925,8 +3075,7 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "order": {
             "type": "integer",
@@ -2999,15 +3148,13 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreatePriceAdjustmentPolicyDriverItemDto"
-            },
-            "nullable": true
+            }
           },
           "priceAdjustmentPolicyPrices": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreatePriceAdjustmentPolicyPriceDto"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -3034,8 +3181,7 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "order": {
             "type": "integer",
@@ -3048,7 +3194,11 @@
         "type": "object",
         "properties": {
           "amount": {
-            "$ref": "#/components/schemas/CreatePricingPolicyPriceMoneyDto"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CreatePricingPolicyPriceMoneyDto"
+              }
+            ]
           },
           "validFrom": {
             "type": "string",
@@ -3071,8 +3221,7 @@
             "format": "double"
           },
           "currencyThreeLetterCode": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -3088,15 +3237,13 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreatePricingPolicyDriverItemDto"
-            },
-            "nullable": true
+            }
           },
           "pricingPolicyPrices": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreatePricingPolicyPriceDto"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -3140,19 +3287,16 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreatePricingSimulatorItemPricingPolicyDriverItemDto"
-            },
-            "nullable": true
+            }
           },
           "priceAdjustmentPolicyDriverItems": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreatePricingSimulatorItemPriceAdjustmentPolicyDriverItemDto"
-            },
-            "nullable": true
+            }
           },
           "currencyThreeLetterIsoCode": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "asOf": {
             "type": "string",
@@ -3174,36 +3318,31 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "description": {
             "type": "string",
             "nullable": true
           },
           "value": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "createdBy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "createdDate": {
             "type": "string",
             "format": "date-time"
           },
           "lastModifiedBy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "lastModifiedDate": {
             "type": "string",
             "format": "date-time"
           },
           "version": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -3224,7 +3363,6 @@
             "items": {
               "$ref": "#/components/schemas/DriverItemReadModel"
             },
-            "nullable": true,
             "readOnly": true
           },
           "itemsPerPage": {
@@ -3257,28 +3395,24 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "lastModifiedDate": {
             "type": "string",
             "format": "date-time"
           },
           "lastModifiedBy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "createdDate": {
             "type": "string",
             "format": "date-time"
           },
           "createdBy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "version": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -3299,7 +3433,6 @@
             "items": {
               "$ref": "#/components/schemas/DriverReadModel"
             },
-            "nullable": true,
             "readOnly": true
           },
           "itemsPerPage": {
@@ -3328,28 +3461,24 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "lastModifiedDate": {
             "type": "string",
             "format": "date-time"
           },
           "lastModifiedBy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "createdDate": {
             "type": "string",
             "format": "date-time"
           },
           "createdBy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "version": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -3370,7 +3499,6 @@
             "items": {
               "$ref": "#/components/schemas/EnvironmentReadModel"
             },
-            "nullable": true,
             "readOnly": true
           },
           "itemsPerPage": {
@@ -3402,12 +3530,10 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PriceDriver"
-            },
-            "nullable": true
+            }
           },
           "currencyThreeLetterCode": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "pricingDate": {
             "type": "string",
@@ -3428,8 +3554,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PriceRequest"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -3442,8 +3567,7 @@
             "format": "double"
           },
           "currencyThreeLetterCode": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -3466,6 +3590,72 @@
         },
         "additionalProperties": false
       },
+      "OrganizationReadModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "lastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastModifiedBy": {
+            "type": "string"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrganizationReadModelIPaged": {
+        "type": "object",
+        "properties": {
+          "hasNextPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "hasPreviousPage": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrganizationReadModel"
+            },
+            "readOnly": true
+          },
+          "itemsPerPage": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "pageIndex": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
       "PriceAdjustmentPolicyCategoryDriverReadModel": {
         "type": "object",
         "properties": {
@@ -3482,8 +3672,7 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "order": {
             "type": "integer",
@@ -3494,20 +3683,17 @@
             "format": "date-time"
           },
           "lastModifiedBy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "createdDate": {
             "type": "string",
             "format": "date-time"
           },
           "createdBy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "version": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -3528,7 +3714,6 @@
             "items": {
               "$ref": "#/components/schemas/PriceAdjustmentPolicyCategoryDriverReadModel"
             },
-            "nullable": true,
             "readOnly": true
           },
           "itemsPerPage": {
@@ -3561,8 +3746,7 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "order": {
             "type": "integer",
@@ -3573,20 +3757,17 @@
             "format": "date-time"
           },
           "lastModifiedBy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "createdDate": {
             "type": "string",
             "format": "date-time"
           },
           "createdBy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "version": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -3607,7 +3788,6 @@
             "items": {
               "$ref": "#/components/schemas/PriceAdjustmentPolicyCategoryReadModel"
             },
-            "nullable": true,
             "readOnly": true
           },
           "itemsPerPage": {
@@ -3644,8 +3824,7 @@
             "format": "uuid"
           },
           "driverItemName": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -3662,8 +3841,7 @@
             "format": "uuid"
           },
           "priceAdjustmentPolicyActionName": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "amount": {
             "type": "number",
@@ -3712,35 +3890,30 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PriceAdjustmentPolicyDriverItemReadModel"
-            },
-            "nullable": true
+            }
           },
           "prices": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PriceAdjustmentPolicyPriceReadModel"
-            },
-            "nullable": true
+            }
           },
           "createdBy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "createdDate": {
             "type": "string",
             "format": "date-time"
           },
           "lastModifiedBy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "lastModifiedDate": {
             "type": "string",
             "format": "date-time"
           },
           "version": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -3761,7 +3934,6 @@
             "items": {
               "$ref": "#/components/schemas/PriceAdjustmentPolicyReadModel"
             },
-            "nullable": true,
             "readOnly": true
           },
           "itemsPerPage": {
@@ -3796,7 +3968,12 @@
             "nullable": true
           },
           "amount": {
-            "$ref": "#/components/schemas/MoneyReadModel"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MoneyReadModel"
+              }
+            ],
+            "nullable": true
           },
           "priceAdjustmentPolicyActionId": {
             "type": "string",
@@ -3829,12 +4006,10 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "value": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -3843,14 +4018,17 @@
         "type": "object",
         "properties": {
           "amount": {
-            "$ref": "#/components/schemas/MoneyReadModel"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MoneyReadModel"
+              }
+            ]
           },
           "priceComponents": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PriceComponentReadModel"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -3862,12 +4040,10 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PriceDriver"
-            },
-            "nullable": true
+            }
           },
           "currencyThreeLetterCode": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "pricingDate": {
             "type": "string",
@@ -3889,8 +4065,7 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "order": {
             "type": "integer",
@@ -3911,24 +4086,21 @@
             "format": "uuid"
           },
           "pricingPolicyDriverName": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "driverItemId": {
             "type": "string",
             "format": "uuid"
           },
           "driverItemName": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "driverItemDescription": {
             "type": "string",
             "nullable": true
           },
           "driverItemValue": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -3945,8 +4117,7 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "order": {
             "type": "integer",
@@ -3957,20 +4128,17 @@
             "format": "date-time"
           },
           "lastModifiedBy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "createdDate": {
             "type": "string",
             "format": "date-time"
           },
           "createdBy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "version": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -3991,7 +4159,6 @@
             "items": {
               "$ref": "#/components/schemas/PricingPolicyDriverReadModel"
             },
-            "nullable": true,
             "readOnly": true
           },
           "itemsPerPage": {
@@ -4024,8 +4191,7 @@
             "format": "double"
           },
           "currencyThreeLetterCode": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "validFrom": {
             "type": "string",
@@ -4055,35 +4221,30 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PricingPolicyDriverItemReadModel"
-            },
-            "nullable": true
+            }
           },
           "prices": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PricingPolicyPriceReadModel"
-            },
-            "nullable": true
+            }
           },
           "createdBy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "createdDate": {
             "type": "string",
             "format": "date-time"
           },
           "lastModifiedBy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "lastModifiedDate": {
             "type": "string",
             "format": "date-time"
           },
           "version": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -4104,7 +4265,6 @@
             "items": {
               "$ref": "#/components/schemas/PricingPolicyReadModel"
             },
-            "nullable": true,
             "readOnly": true
           },
           "itemsPerPage": {
@@ -4136,19 +4296,16 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PricingSimulatorPricingPolicyDriverItemReadModel"
-            },
-            "nullable": true
+            }
           },
           "priceAdjustmentPolicyDriverItems": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PricingSimulatorPriceAdjustmentPolicyDriverItemReadModel"
-            },
-            "nullable": true
+            }
           },
           "currencyThreeLetterIsoCode": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "asOf": {
             "type": "string",
@@ -4170,20 +4327,17 @@
             "format": "uuid"
           },
           "priceAdjustmentPolicyDriverName": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "driverItemId": {
             "type": "string",
             "format": "uuid"
           },
           "driverItemName": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "driverItemValue": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -4200,20 +4354,17 @@
             "format": "uuid"
           },
           "pricingPolicyDriverName": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "driverItemId": {
             "type": "string",
             "format": "uuid"
           },
           "driverItemName": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "driverItemValue": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -4229,8 +4380,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PricingSimulatorItemReadModel"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -4251,7 +4401,6 @@
             "items": {
               "$ref": "#/components/schemas/PricingSimulatorReadModel"
             },
-            "nullable": true,
             "readOnly": true
           },
           "itemsPerPage": {
@@ -4323,20 +4472,17 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "description": {
             "type": "string",
             "nullable": true
           },
           "value": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "version": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -4345,12 +4491,10 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "version": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -4367,16 +4511,14 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "order": {
             "type": "integer",
             "format": "int32"
           },
           "version": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -4385,16 +4527,14 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "order": {
             "type": "integer",
             "format": "int32"
           },
           "version": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -4410,19 +4550,16 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreatePriceAdjustmentPolicyDriverItemDto"
-            },
-            "nullable": true
+            }
           },
           "adjustmentPolicyPrices": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreatePriceAdjustmentPolicyPriceDto"
-            },
-            "nullable": true
+            }
           },
           "version": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -4435,16 +4572,14 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "order": {
             "type": "integer",
             "format": "int32"
           },
           "version": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -4456,19 +4591,16 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreatePricingPolicyDriverItemDto"
-            },
-            "nullable": true
+            }
           },
           "pricingPolicyPrices": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreatePricingPolicyPriceDto"
-            },
-            "nullable": true
+            }
           },
           "version": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
