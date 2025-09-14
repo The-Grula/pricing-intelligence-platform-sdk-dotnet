@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "PricingPolicies.Api",
+    "title": "PricingIntelligencePlatform.Api",
     "version": "v1"
   },
   "paths": {
@@ -688,6 +688,66 @@
             }
           },
           "500": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/identity/provision": {
+      "post": {
+        "tags": [
+          "Identity"
+        ],
+        "summary": "Provisions user, organization, environment and mappings from JWT claims.",
+        "operationId": "ProvisionUser",
+        "parameters": [
+          {
+            "name": "X-Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProvisionUserResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": null,
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
             "description": null,
             "content": {
               "application/problem+json": {
@@ -4022,7 +4082,8 @@
               {
                 "$ref": "#/components/schemas/MoneyReadModel"
               }
-            ]
+            ],
+            "nullable": true
           },
           "priceComponents": {
             "type": "array",
@@ -4447,6 +4508,24 @@
           }
         },
         "additionalProperties": { }
+      },
+      "ProvisionUserResult": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "organizationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "defaultEnvironmentId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
       },
       "ReorderPriceAdjustmentPoliciesRequest": {
         "required": [
